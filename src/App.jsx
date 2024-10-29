@@ -31,7 +31,7 @@ function App() {
     const isAddOpen = useSelector(selectIsAddModalOpen);
 
     return (
-        <div className={clsx('app', isEditOpen || isAddOpen && 'block-scroll')}>
+        <div className={clsx('app', isEditOpen || (isAddOpen && 'block-scroll'))}>
             <Routes>
                 <Route
                     path="/"
@@ -73,8 +73,7 @@ function App() {
                         </PublicRoute>
                     }
                 />
-
-                <Route path="*" element={<Navigate to="/" />}></Route>
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </div>
     );
