@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://MatacheAlexandru.github.io/money",
+    "homepage": "https://matachealexandru.github.io/money/",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
