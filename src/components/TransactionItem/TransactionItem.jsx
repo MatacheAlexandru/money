@@ -15,11 +15,13 @@ function TransactionItem({ transaction, id }) {
     const { isMobile } = useMedia();
     const idForModal = id;
     const style = getStyleByType(transaction.type);
-
     function onEdit() {
-        const newId = idForModal;
-        dispatch(addEditId(newId));
-        dispatch(openEditModal());
+        if (!isModalOpen) {
+            // Adaugă această verificare
+            const newId = idForModal;
+            dispatch(addEditId(newId));
+            dispatch(openEditModal());
+        }
     }
 
     async function OnDelete() {
@@ -49,24 +51,23 @@ function TransactionItem({ transaction, id }) {
         </ul>
     ) : (
         <>
-            
-                <ul className={s.row} style={style}>
-                    {[...Object.values(transaction)].map((value, idx) => {
-                        return (
-                            <li key={idx} className={s.row_item}>
-                                {value}
-                            </li>
-                        );
-                    })}
-                    <li className={clsx(s.row_item, s.controls)}>
-                        <button type="button" className={s.btn_edit} onClick={onEdit}>
-                            <Icon id="#icon-pen" className={s.edit}></Icon>
-                        </button>
-                        <button type="button" className={clsx(s.colored, 'btn_delete')} onClick={OnDelete}>
-                            Delete
-                        </button>
-                    </li>
-                </ul>
+            <ul className={s.row} style={style}>
+                {[...Object.values(transaction)].map((value, idx) => {
+                    return (
+                        <li key={idx} className={s.row_item}>
+                            {value}
+                        </li>
+                    );
+                })}
+                <li className={clsx(s.row_item, s.controls)}>
+                    <button type="button" className={s.btn_edit} onClick={onEdit}>
+                        <Icon id="#icon-pen" className={s.edit}></Icon>
+                    </button>
+                    <button type="button" className={clsx(s.colored, 'btn_delete')} onClick={OnDelete}>
+                        Delete
+                    </button>
+                </li>
+            </ul>
         </>
     );
 }
